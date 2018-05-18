@@ -43322,6 +43322,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43509,6 +43511,8 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Name")]),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -43536,6 +43540,8 @@ var render = function() {
                 "div",
                 { staticClass: "form-group" },
                 [
+                  _c("label", [_vm._v("Select Parent Category")]),
+                  _vm._v(" "),
                   _c("autocomplete", {
                     attrs: {
                       suggestions: _vm.suggestions,
@@ -43993,7 +43999,7 @@ var render = function() {
     [
       _c("input", {
         staticClass: "form-control",
-        attrs: { type: "text" },
+        attrs: { type: "text", placeholder: "Select Category" },
         domProps: { value: _vm.category.parent_name },
         on: {
           input: function($event) {

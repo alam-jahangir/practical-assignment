@@ -1,6 +1,6 @@
 <template>
     <div style="position:relative" v-bind:class="{'open':openSuggestion}">
-        <input class="form-control" type="text" :value="category.parent_name" @input="updateValue($event.target.value)"
+        <input class="form-control" type="text" placeholder="Select Category" :value="category.parent_name" @input="updateValue($event.target.value)"
                @keydown.enter = 'enter'
                @keydown.down = 'down'
                @keydown.up = 'up'

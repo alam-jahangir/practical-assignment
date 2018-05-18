@@ -10,10 +10,12 @@
             <form @submit.prevent="addCategory" class="mb-3">
 
                 <div class="form-group">
+                    <label>Name</label>
                     <input type="text" class="form-control" placeholder="Name" v-model="category.name" />
                 </div>
 
                 <div class="form-group">
+                    <label>Select Parent Category</label>
                     <autocomplete :suggestions="suggestions" :category="category" :selection="category.parent_name"></autocomplete>
                 </div>
 
