@@ -17,16 +17,8 @@
 
 
     <div class="header clearfix">
-
         <navigation></navigation>
-
-        <!--<ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
-        </ol>-->
         <breadcrumbs></breadcrumbs>
-
     </div>
 
 
