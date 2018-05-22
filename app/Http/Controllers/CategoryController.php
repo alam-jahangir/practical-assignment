@@ -11,17 +11,21 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(5);
+
+        $sort = $request->input('sort', 'created_at');
+        $sortDir = $request->input('dir', 'asc');
+        $categories = Category::orderBy($sort, $sortDir)->paginate(5);
         return CategoryResource::collection($categories);
     }
 
 
     /**
-     * Store a newly created resource in storage.
+     * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

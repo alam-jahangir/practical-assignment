@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label>Select Parent Category</label>
-                    <autocomplete :suggestions="suggestions" :category="category" :selection="category.parent_name"></autocomplete>
+                    <autocomplete :category="category" :selection="category.parent_name"></autocomplete>
                 </div>
 
                 <div class="col-xs-12 col-md-12">
@@ -67,8 +67,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Category Name</th>
+                        <th @click="sort('name')"><a href="javascript:void(0)">Category Name</a></th>
                         <th>Parent Category Name</th>
+                        <th @click="sort('created_at')"><a href="javascript:void(0)">Created Date</a></th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -76,6 +77,7 @@
                     <tr v-for="category in categories" v-bind:key="category.id">
                         <td>{{category.name}}</td>
                         <td>{{category.parent_name}}</td>
+                        <td>{{category.created_at}}</td>
                         <td>
                             <button @click="editCategory(category)" class="btn btn-warning mb-2">Edit</button>
                             <button @click="deleteCategory(category.id)" class="btn btn-danger">Delete</button>
@@ -95,9 +97,6 @@
 <script>
 
     export default{
-        /*components: {
-            autocomplete
-        },*/
         data() {
             return {
                 categories:[],
@@ -106,12 +105,16 @@
                     id: '',
                     name: '',
                     parent_id: '',
+                    created_at: '',
                     parent_name: ''
                 },
+                page_url: '',
                 pagination: {},
                 edit: false,
+                currentSort:'created_at',
+                currentSortDir:'asc'
                 //selection: '',
-                suggestions: []
+                //suggestions: []
             }
         },
 
@@ -120,24 +123,6 @@
         },
 
         methods: {
-
-            /*bindSuggestion(value) {
-
-                fetch('api/autocomplete', {
-                    method: 'post',
-                    body: JSON.stringify({'name': value}),
-                    headers: {
-                        'content-type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.suggestions = res.data;
-
-                })
-                .catch(err => console.log(err));
-
-            },*/
 
             createCategory() {
                 this.action = 'add';
@@ -162,15 +147,20 @@
                 this.edit = false;
 
                 let vm = this;
-                page_url = page_url || 'api/categories';
+                this.page_url = page_url || 'api/categories';
+                if (this.page_url.indexOf('?') >= 0) {
+                    page_url = this.page_url+'&sort='+this.currentSort+'&dir='+this.currentSortDir
+                } else {
+                    page_url = this.page_url+'?sort='+this.currentSort+'&dir='+this.currentSortDir;
+                }
                 fetch(page_url)
-                    .then(res => res.json())
-                    .then(res => {
-                        //console.log(res.data);
-                        this.categories = res.data;
-                        vm.makePagination(res.meta, res.links);
-                    })
-                    .catch(err => console.log(err));
+                .then(res => res.json())
+                .then(res => {
+                    //console.log(res.data);
+                    this.categories = res.data;
+                    vm.makePagination(res.meta, res.links);
+                })
+                .catch(err => console.log(err));
             },
 
             makePagination(meta, links) {
@@ -240,8 +230,17 @@
                 this.action = 'add';
                 this.category.id = category.id;
                 this.category.name = category.name;
+                this.category.created_at = category.created_at;
                 this.category.parent_id = category.parent_id;
                 this.category.parent_name = category.parent_name;
+            },
+
+            sort:function(s) {
+                if (s === this.currentSort) {
+                    this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc';
+                }
+                this.currentSort = s;
+                this.fetchCategories(this.page_url);
             }
         }
     };

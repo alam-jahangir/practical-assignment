@@ -8,28 +8,29 @@
 
         <input type="hidden" class="form-control" v-model="category.parent_id" />
 
-        <ul class="dropdown-menu" style="width:100%">
+        <ul class="dropdown-menu" style="width:100%;">
+            <li @click="suggestionClick(-1)"><a href="javascript:void(0)">--Select--</a></li>
             <li v-for="(suggestion, index) in matches"
                 v-bind:class="{'active': isActive(index)}" v-if="suggestion.id != category.id"
-                @click="suggestionClick(index)"
-            >
-                <a href="#">{{ suggestion.name }}</a>
+                @click="suggestionClick(index)">
+                <a href="javascript:void(0)">{{ suggestion.name }}</a>
             </li>
         </ul>
+
     </div>
 </template>
 
 <script>
     export default {
         props: {
-            value: {
+            /*value: {
                 type: String,
                 required: false
             },
             suggestions: {
                 type: Array,
                 required: false
-            },
+            },*/
             category: {
                 type: Object,
                 required: true,
@@ -89,7 +90,6 @@
                     this.open = true
                     this.current = 0
                 }
-
                 //this.$emit('input', value);
             },
             // When enter pressed on the input
@@ -115,10 +115,16 @@
             },
             // When one of the suggestion is clicked
             suggestionClick (index) {
-                this.category.parent_name = this.matches[index].name;
-                //this.$emit('input', this.matches[index].name)
-                this.category.parent_id = this.matches[index].id
-                this.open = false;
+                if ( index < 0) {
+                    this.category.parent_name = "";
+                    this.category.parent_id = 0;
+                    this.open = false;
+                } else {
+                    this.category.parent_name = this.matches[index].name;
+                    //this.$emit('input', this.matches[index].name)
+                    this.category.parent_id = this.matches[index].id
+                    this.open = false;
+                }
             }
         }
     }

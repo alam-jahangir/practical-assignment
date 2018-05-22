@@ -1,0 +1,6 @@
+<template>
+    <div class="home">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consequat dui eget metus euismod pulvinar. Nulla finibus turpis sit amet ante rutrum, ut porttitor risus tristique. Vivamus laoreet bibendum sem, id auctor odio bibendum non. Aliquam erat volutpat. Donec efficitur purus at tincidunt feugiat. Aenean volutpat fringilla tempus. Pellentesque ac auctor lectus, id vulputate turpis. Proin non odio lorem. Nullam fringilla ligula eget tincidunt rutrum. Etiam ac vehicula enim. Phasellus faucibus metus suscipit dignissim finibus. Ut id ante efficitur metus pulvinar euismod. Etiam facilisis nec orci posuere imperdiet. Maecenas eros nisl, consectetur vel sem sit amet, dictum volutpat est.</p>
+        <p>Quisque elementum mauris nunc, in faucibus dui volutpat vitae. Donec fringilla a dui vitae ultricies. In ut nibh at enim hendrerit hendrerit eget sed sapien. Integer ultricies, quam vitae finibus tincidunt, mi felis sollicitudin lectus, vitae ultrices ligula eros eget massa. Etiam at ligula arcu. Integer euismod ipsum vel elit dapibus fringilla. Proin viverra magna quis aliquet viverra. Sed placerat metus in nunc sodales aliquam at et lorem. Cras ac lobortis tortor. </p>
+    </div>
+</template>

@@ -19,6 +19,7 @@ class Category extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'parent_id' => $this->parent_id,
+            'created_at' => date('Y-m-d', strtotime($this->created_at)),
             'parent_name' => isset($this->parent->name) ? $this->parent->name : ''
         ];
     }

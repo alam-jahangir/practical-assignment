@@ -15,19 +15,25 @@
 
 <div id="app">
 
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-            </div>
-        </div>
-    </nav>
+
+    <div class="header clearfix">
+
+        <navigation></navigation>
+
+        <!--<ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>-->
+        <breadcrumbs></breadcrumbs>
+
+    </div>
+
 
     <div class="container">
         <?php /*@yield('content') */ ?>
-        <categories></categories>
+        <!--<categories></categories>-->
+        <router-view></router-view>
     </div>
 </div>
 
