@@ -23,8 +23,6 @@
 
 
     <div class="container">
-        <?php /*@yield('content') */ ?>
-        <!--<categories></categories>-->
         <router-view></router-view>
     </div>
 </div>
